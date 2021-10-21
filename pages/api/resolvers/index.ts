@@ -50,30 +50,30 @@ let user = [
 
 export const resolvers = {
   Mutation: {
-    createUser: (parent: any, agrs: any) => {
+    createUser: (_parent: any, agrs: any) => {
       user.push(agrs);
       return agrs;
     },
   },
 
   Subscription: {
-    newUser: (parent: any, agrs: any) => agrs,
+    newUser: (_parent: any, agrs: any) => agrs,
   },
 
   Query: {
     Users: () => user,
     Schools: () => school,
-    User: (parent: any, agrs: any) => {
+    User: (_parent: any, agrs: any) => {
       user.push(agrs);
       return user.find((user) => user.id == agrs.id);
     },
-    School: (parent: any, agrs: any) => {
+    School: (_parent: any, agrs: any) => {
       return school.find((school) => school.id == agrs.id);
     },
   },
 
   User: {
-    schoolID: (parent: any, agrs: any) => {
+    schoolID: (parent: any) => {
       return school.find((school) => school.id == parent.id);
     },
   },
